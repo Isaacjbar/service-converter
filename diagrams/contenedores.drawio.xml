@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64)" version="29.3.8">
+  <diagram name="Contenedores" id="cnt-java2uml-001">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1300" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- Person: Analista / Programador -->
+        <object placeholders="1" c4Name="Analista / Programador" c4Type="Person" c4Description="Sube archivos .java o .zip y visualiza diagramas UML." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#cccccc&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="cnt-analyst">
+          <mxCell parent="1" style="html=1;fontSize=11;dashed=0;whiteSpace=wrap;fillColor=#083F75;strokeColor=#06315C;fontColor=#ffffff;shape=mxgraph.c4.person2;align=center;metaEdit=1;points=[[0.5,0,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0]];resizable=0;" vertex="1">
+            <mxGeometry x="250" y="50" width="200" height="180" as="geometry" />
+          </mxCell>
+        </object>
+
+        <!-- Person: Administrador -->
+        <object placeholders="1" c4Name="Administrador" c4Type="Person" c4Description="Gestiona usuarios y roles del sistema." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#cccccc&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="cnt-admin">
+          <mxCell parent="1" style="html=1;fontSize=11;dashed=0;whiteSpace=wrap;fillColor=#083F75;strokeColor=#06315C;fontColor=#ffffff;shape=mxgraph.c4.person2;align=center;metaEdit=1;points=[[0.5,0,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0]];resizable=0;" vertex="1">
+            <mxGeometry x="900" y="50" width="200" height="180" as="geometry" />
+          </mxCell>
+        </object>
+
+        <!-- System Boundary -->
+        <object placeholders="1" c4Name="Sistema Conversor Java2UML" c4Type="SystemScopeBoundary" c4Application="Sistema" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;&lt;div style=&quot;text-align: left&quot;&gt;%c4Name%&lt;/div&gt;&lt;/b&gt;&lt;/font&gt;&lt;div style=&quot;text-align: left&quot;&gt;[%c4Application%]&lt;/div&gt;" id="cnt-boundary">
+          <mxCell parent="1" style="rounded=1;fontSize=11;whiteSpace=wrap;html=1;dashed=1;arcSize=20;fillColor=none;strokeColor=#666666;fontColor=#333333;labelBackgroundColor=none;align=left;verticalAlign=bottom;labelBorderColor=none;spacingTop=0;spacing=10;dashPattern=8 4;metaEdit=1;rotatable=0;perimeter=rectanglePerimeter;noLabel=0;labelPadding=0;allowArrows=0;connectable=0;expand=0;recursiveResize=0;editable=1;pointerEvents=0;absoluteArcSize=1;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1">
+            <mxGeometry x="140" y="310" width="1080" height="760" as="geometry" />
+          </mxCell>
+        </object>
+
+        <!-- Container: Frontend SPA (React) -->
+        <object placeholders="1" c4Name="Frontend SPA" c4Type="Container" c4Technology="React / JavaScript" c4Description="Interfaz web para subida de archivos .java/.zip, visualizacion de diagramas UML en HTML, impresion (Ctrl+P), historial de versiones y panel de administracion." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%: %c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#E6E6E6&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="cnt-frontend">
+          <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;labelBackgroundColor=none;fillColor=#23A2D9;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0E7DAD;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1">
+            <mxGeometry x="480" y="340" width="240" height="120" as="geometry" />
+          </mxCell>
+        </object>
+
+        <!-- Container: Backend API (Django) -->
+        <object placeholders="1" c4Name="Backend API" c4Type="Container" c4Technology="Python / Django" c4Description="API REST que gestiona autenticacion (correo/contrasena), subida de archivos, conversion de codigo Java a diagramas UML e historial de versiones." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%: %c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#E6E6E6&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="cnt-backend">
+          <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;labelBackgroundColor=none;fillColor=#23A2D9;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0E7DAD;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1">
+            <mxGeometry x="480" y="560" width="240" height="120" as="geometry" />
+          </mxCell>
+        </object>
+
+        <!-- Container: Motor de Analisis Sintactico (ANTLR) -->
+        <object placeholders="1" c4Name="Motor de Analisis Sintactico" c4Type="Container" c4Technology="Python / ANTLR" c4Description="Realiza el analisis sintactico del codigo fuente Java, genera el AST y extrae clases, metodos, atributos y relaciones." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%: %c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#E6E6E6&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="cnt-analysis">
+          <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;labelBackgroundColor=none;fillColor=#23A2D9;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0E7DAD;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1">
+            <mxGeometry x="180" y="790" width="240" height="120" as="geometry" />
+          </mxCell>
+        </object>
+
+        <!-- Container: Motor de Generacion de Diagramas (Pillow) -->
+        <object placeholders="1" c4Name="Motor de Generacion de Diagramas" c4Type="Container" c4Technology="Python / Pillow" c4Description="Genera imagenes de diagramas UML (clases, casos de uso, flujo de actividades) a partir de la estructura parseada del codigo Java." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%: %c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#E6E6E6&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="cnt-generation">
+          <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;labelBackgroundColor=none;fillColor=#23A2D9;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0E7DAD;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1">
+            <mxGeometry x="540" y="790" width="240" height="120" as="geometry" />
+          </mxCell>
+        </object>
+
+        <!-- Container: Base de Datos -->
+        <object placeholders="1" c4Name="Base de Datos" c4Type="Container" c4Technology="PostgreSQL" c4Description="Almacena usuarios, roles, credenciales, diagramas generados e historial de versiones por fecha y nombre de archivo." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%: %c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#E6E6E6&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="cnt-db">
+          <mxCell parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;labelBackgroundColor=none;fillColor=#23A2D9;fontColor=#ffffff;strokeColor=#0E7DAD;fontSize=11;metaEdit=1;" vertex="1">
+            <mxGeometry x="900" y="790" width="240" height="120" as="geometry" />
+          </mxCell>
+        </object>
+
+        <!-- Edge: Analyst -> Frontend -->
+        <mxCell id="cnt-e1" edge="1" parent="1" source="cnt-analyst" target="cnt-frontend" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cnt-l1" connectable="0" parent="cnt-e1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Sube .java/.zip, visualiza e&lt;br&gt;imprime diagramas [HTTPS]" vertex="1">
+          <mxGeometry relative="1" x="-0.2" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Edge: Admin -> Frontend -->
+        <mxCell id="cnt-e2" edge="1" parent="1" source="cnt-admin" target="cnt-frontend" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cnt-l2" connectable="0" parent="cnt-e2" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Gestiona usuarios [HTTPS]" vertex="1">
+          <mxGeometry relative="1" x="-0.2" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Edge: Frontend -> Backend -->
+        <mxCell id="cnt-e3" edge="1" parent="1" source="cnt-frontend" target="cnt-backend" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cnt-l3" connectable="0" parent="cnt-e3" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Consume API REST&lt;br&gt;[JSON/HTTPS]" vertex="1">
+          <mxGeometry relative="1" x="-0.1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Edge: Backend -> Analysis -->
+        <mxCell id="cnt-e4" edge="1" parent="1" source="cnt-backend" target="cnt-analysis" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cnt-l4" connectable="0" parent="cnt-e4" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Envia codigo Java&lt;br&gt;para analisis sintactico [ANTLR]" vertex="1">
+          <mxGeometry relative="1" x="-0.1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Edge: Backend -> Generation -->
+        <mxCell id="cnt-e5" edge="1" parent="1" source="cnt-backend" target="cnt-generation" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cnt-l5" connectable="0" parent="cnt-e5" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Solicita generacion de&lt;br&gt;imagenes de diagramas [Pillow]" vertex="1">
+          <mxGeometry relative="1" x="-0.1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Edge: Backend -> DB -->
+        <mxCell id="cnt-e6" edge="1" parent="1" source="cnt-backend" target="cnt-db" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cnt-l6" connectable="0" parent="cnt-e6" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Lee/escribe usuarios, diagramas&lt;br&gt;e historial de versiones [SQL]" vertex="1">
+          <mxGeometry relative="1" x="-0.1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Edge: Analysis -> Generation -->
+        <mxCell id="cnt-e7" edge="1" parent="1" source="cnt-analysis" target="cnt-generation" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cnt-l7" connectable="0" parent="cnt-e7" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Provee estructura&lt;br&gt;parseada del codigo [Python]" vertex="1">
+          <mxGeometry relative="1" x="-0.1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

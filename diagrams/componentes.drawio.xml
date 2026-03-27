@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64)" version="29.3.8">
+  <diagram name="Componentes" id="cmp-java2uml-001">
+    <mxGraphModel dx="1674" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2000" pageHeight="1600" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- ==================== ACTORS ==================== -->
+
+        <!-- Person: Analista / Programador -->
+        <object placeholders="1" c4Name="Analista / Programador" c4Type="Person" c4Description="Sube archivos .java/.zip y visualiza diagramas UML." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#cccccc&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="cmp-analyst">
+          <mxCell parent="1" style="html=1;fontSize=11;dashed=0;whiteSpace=wrap;fillColor=#083F75;strokeColor=#06315C;fontColor=#ffffff;shape=mxgraph.c4.person2;align=center;metaEdit=1;points=[[0.5,0,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0]];resizable=0;" vertex="1">
+            <mxGeometry x="180" y="30" width="200" height="180" as="geometry" />
+          </mxCell>
+        </object>
+
+        <!-- Person: Administrador -->
+        <object placeholders="1" c4Name="Administrador" c4Type="Person" c4Description="Gestiona usuarios y roles." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#cccccc&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="cmp-admin">
+          <mxCell parent="1" style="html=1;fontSize=11;dashed=0;whiteSpace=wrap;fillColor=#083F75;strokeColor=#06315C;fontColor=#ffffff;shape=mxgraph.c4.person2;align=center;metaEdit=1;points=[[0.5,0,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0]];resizable=0;" vertex="1">
+            <mxGeometry x="580" y="30" width="200" height="180" as="geometry" />
+          </mxCell>
+        </object>
+
+        <!-- ==================== FRONTEND BOUNDARY ==================== -->
+
+        <object placeholders="1" c4Name="Frontend SPA" c4Type="ContainerScopeBoundary" c4Application="React / JavaScript" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;&lt;div style=&quot;text-align: left&quot;&gt;%c4Name%&lt;/div&gt;&lt;/b&gt;&lt;/font&gt;&lt;div style=&quot;text-align: left&quot;&gt;[%c4Application%]&lt;/div&gt;" id="cmp-boundary-fe">
+          <mxCell parent="1" style="rounded=1;fontSize=11;whiteSpace=wrap;html=1;dashed=1;arcSize=20;fillColor=none;strokeColor=#666666;fontColor=#333333;labelBackgroundColor=none;align=left;verticalAlign=bottom;labelBorderColor=none;spacingTop=0;spacing=10;dashPattern=8 4;metaEdit=1;rotatable=0;perimeter=rectanglePerimeter;noLabel=0;labelPadding=0;allowArrows=0;connectable=0;expand=0;recursiveResize=0;editable=1;pointerEvents=0;absoluteArcSize=1;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1">
+            <mxGeometry x="40" y="270" width="600" height="520" as="geometry" />
+          </mxCell>
+        </object>
+
+        <!-- Component: AuthModule -->
+        <object placeholders="1" c4Name="AuthModule" c4Type="Component" c4Technology="React" c4Description="Formularios de login y registro por correo electronico y contrasena." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%: %c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#E6E6E6&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="cmp-auth-fe">
+          <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;labelBackgroundColor=none;fillColor=#23A2D9;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0E7DAD;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1">
+            <mxGeometry x="70" y="300" width="240" height="110" as="geometry" />
+          </mxCell>
+        </object>
+
+        <!-- Component: FileUploader -->
+        <object placeholders="1" c4Name="FileUploader" c4Type="Component" c4Technology="React" c4Description="Componente de subida de archivos .java individuales o paquetes .zip." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%: %c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#E6E6E6&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="cmp-uploader">
+          <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;labelBackgroundColor=none;fillColor=#23A2D9;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0E7DAD;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1">
+            <mxGeometry x="370" y="300" width="240" height="110" as="geometry" />
+          </mxCell>
+        </object>
+
+        <!-- Component: DiagramViewer -->
+        <object placeholders="1" c4Name="DiagramViewer" c4Type="Component" c4Technology="React" c4Description="Renderiza diagramas UML en HTML con vista optimizada para impresion (Ctrl+P)." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%: %c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#E6E6E6&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="cmp-viewer">
+          <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;labelBackgroundColor=none;fillColor=#23A2D9;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0E7DAD;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1">
+            <mxGeometry x="70" y="450" width="240" height="110" as="geometry" />
+          </mxCell>
+        </object>
+
+        <!-- Component: HistoryPanel -->
+        <object placeholders="1" c4Name="HistoryPanel" c4Type="Component" c4Technology="React" c4Description="Muestra historial de versiones de diagramas por fecha y nombre de archivo (v1 vs v2)." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%: %c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#E6E6E6&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="cmp-history-fe">
+          <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;labelBackgroundColor=none;fillColor=#23A2D9;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0E7DAD;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1">
+            <mxGeometry x="370" y="450" width="240" height="110" as="geometry" />
+          </mxCell>
+        </object>
+
+        <!-- Component: AdminPanel -->
+        <object placeholders="1" c4Name="AdminPanel" c4Type="Component" c4Technology="React" c4Description="Panel de gestion de usuarios: altas, bajas y asignacion de roles (solo Administrador)." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%: %c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#E6E6E6&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="cmp-admin-panel">
+          <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;labelBackgroundColor=none;fillColor=#23A2D9;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0E7DAD;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1">
+            <mxGeometry x="220" y="620" width="240" height="110" as="geometry" />
+          </mxCell>
+        </object>
+
+        <!-- ==================== BACKEND BOUNDARY ==================== -->
+
+        <object placeholders="1" c4Name="Backend API" c4Type="ContainerScopeBoundary" c4Application="Python / Django" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;&lt;div style=&quot;text-align: left&quot;&gt;%c4Name%&lt;/div&gt;&lt;/b&gt;&lt;/font&gt;&lt;div style=&quot;text-align: left&quot;&gt;[%c4Application%]&lt;/div&gt;" id="cmp-boundary-be">
+          <mxCell parent="1" style="rounded=1;fontSize=11;whiteSpace=wrap;html=1;dashed=1;arcSize=20;fillColor=none;strokeColor=#666666;fontColor=#333333;labelBackgroundColor=none;align=left;verticalAlign=bottom;labelBorderColor=none;spacingTop=0;spacing=10;dashPattern=8 4;metaEdit=1;rotatable=0;perimeter=rectanglePerimeter;noLabel=0;labelPadding=0;allowArrows=0;connectable=0;expand=0;recursiveResize=0;editable=1;pointerEvents=0;absoluteArcSize=1;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1">
+            <mxGeometry x="700" y="270" width="600" height="520" as="geometry" />
+          </mxCell>
+        </object>
+
+        <!-- Component: AuthController -->
+        <object placeholders="1" c4Name="AuthController" c4Type="Component" c4Technology="Django" c4Description="Endpoints de autenticacion: login, registro y logout mediante correo y contrasena." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%: %c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#E6E6E6&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="cmp-auth-be">
+          <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;labelBackgroundColor=none;fillColor=#23A2D9;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0E7DAD;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1">
+            <mxGeometry x="730" y="300" width="240" height="110" as="geometry" />
+          </mxCell>
+        </object>
+
+        <!-- Component: UserController -->
+        <object placeholders="1" c4Name="UserController" c4Type="Component" c4Technology="Django" c4Description="CRUD de usuarios y asignacion de roles (Administrador / Analista)." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%: %c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#E6E6E6&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="cmp-user-be">
+          <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;labelBackgroundColor=none;fillColor=#23A2D9;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0E7DAD;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1">
+            <mxGeometry x="1030" y="300" width="240" height="110" as="geometry" />
+          </mxCell>
+        </object>
+
+        <!-- Component: ConversionController -->
+        <object placeholders="1" c4Name="ConversionController" c4Type="Component" c4Technology="Django" c4Description="Recibe archivos .java/.zip, orquesta el analisis sintactico y la generacion de los 3 tipos de diagramas UML." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%: %c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#E6E6E6&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="cmp-conversion-be">
+          <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;labelBackgroundColor=none;fillColor=#23A2D9;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0E7DAD;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1">
+            <mxGeometry x="730" y="450" width="240" height="110" as="geometry" />
+          </mxCell>
+        </object>
+
+        <!-- Component: HistoryService -->
+        <object placeholders="1" c4Name="HistoryService" c4Type="Component" c4Technology="Django" c4Description="Gestiona historial de versiones: almacena diagramas por fecha y nombre de archivo, permite comparar versiones." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%: %c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#E6E6E6&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="cmp-history-be">
+          <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;labelBackgroundColor=none;fillColor=#23A2D9;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0E7DAD;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1">
+            <mxGeometry x="1030" y="450" width="240" height="110" as="geometry" />
+          </mxCell>
+        </object>
+
+        <!-- Component: FileService -->
+        <object placeholders="1" c4Name="FileService" c4Type="Component" c4Technology="Django" c4Description="Procesa archivos .java individuales y descomprime paquetes .zip para iterar multiples archivos." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%: %c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#E6E6E6&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="cmp-file-be">
+          <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;labelBackgroundColor=none;fillColor=#23A2D9;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0E7DAD;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1">
+            <mxGeometry x="880" y="620" width="240" height="110" as="geometry" />
+          </mxCell>
+        </object>
+
+        <!-- ==================== ANALYSIS BOUNDARY ==================== -->
+
+        <object placeholders="1" c4Name="Motor de Analisis Sintactico" c4Type="ContainerScopeBoundary" c4Application="Python / ANTLR" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;&lt;div style=&quot;text-align: left&quot;&gt;%c4Name%&lt;/div&gt;&lt;/b&gt;&lt;/font&gt;&lt;div style=&quot;text-align: left&quot;&gt;[%c4Application%]&lt;/div&gt;" id="cmp-boundary-analysis">
+          <mxCell parent="1" style="rounded=1;fontSize=11;whiteSpace=wrap;html=1;dashed=1;arcSize=20;fillColor=none;strokeColor=#666666;fontColor=#333333;labelBackgroundColor=none;align=left;verticalAlign=bottom;labelBorderColor=none;spacingTop=0;spacing=10;dashPattern=8 4;metaEdit=1;rotatable=0;perimeter=rectanglePerimeter;noLabel=0;labelPadding=0;allowArrows=0;connectable=0;expand=0;recursiveResize=0;editable=1;pointerEvents=0;absoluteArcSize=1;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1">
+            <mxGeometry x="40" y="870" width="350" height="220" as="geometry" />
+          </mxCell>
+        </object>
+
+        <!-- Component: JavaParser -->
+        <object placeholders="1" c4Name="JavaParser" c4Type="Component" c4Technology="Python / ANTLR" c4Description="Tokeniza y parsea codigo fuente Java, genera AST y extrae clases, atributos, metodos, visibilidad y relaciones." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%: %c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#E6E6E6&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="cmp-parser">
+          <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;labelBackgroundColor=none;fillColor=#23A2D9;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0E7DAD;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1">
+            <mxGeometry x="90" y="910" width="240" height="120" as="geometry" />
+          </mxCell>
+        </object>
+
+        <!-- ==================== GENERATION BOUNDARY ==================== -->
+
+        <object placeholders="1" c4Name="Motor de Generacion de Diagramas" c4Type="ContainerScopeBoundary" c4Application="Python / Pillow" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;&lt;div style=&quot;text-align: left&quot;&gt;%c4Name%&lt;/div&gt;&lt;/b&gt;&lt;/font&gt;&lt;div style=&quot;text-align: left&quot;&gt;[%c4Application%]&lt;/div&gt;" id="cmp-boundary-gen">
+          <mxCell parent="1" style="rounded=1;fontSize=11;whiteSpace=wrap;html=1;dashed=1;arcSize=20;fillColor=none;strokeColor=#666666;fontColor=#333333;labelBackgroundColor=none;align=left;verticalAlign=bottom;labelBorderColor=none;spacingTop=0;spacing=10;dashPattern=8 4;metaEdit=1;rotatable=0;perimeter=rectanglePerimeter;noLabel=0;labelPadding=0;allowArrows=0;connectable=0;expand=0;recursiveResize=0;editable=1;pointerEvents=0;absoluteArcSize=1;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1">
+            <mxGeometry x="440" y="870" width="900" height="220" as="geometry" />
+          </mxCell>
+        </object>
+
+        <!-- Component: ClassDiagramGenerator -->
+        <object placeholders="1" c4Name="ClassDiagramGenerator" c4Type="Component" c4Technology="Python / Pillow" c4Description="Genera imagenes de diagramas de clases UML (atributos, metodos, visibilidad)." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%: %c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#E6E6E6&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="cmp-classgen">
+          <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;labelBackgroundColor=none;fillColor=#23A2D9;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0E7DAD;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1">
+            <mxGeometry x="470" y="910" width="240" height="120" as="geometry" />
+          </mxCell>
+        </object>
+
+        <!-- Component: UseCaseDiagramGenerator -->
+        <object placeholders="1" c4Name="UseCaseDiagramGenerator" c4Type="Component" c4Technology="Python / Pillow" c4Description="Genera imagenes de diagramas de casos de uso." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%: %c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#E6E6E6&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="cmp-usecasegen">
+          <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;labelBackgroundColor=none;fillColor=#23A2D9;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0E7DAD;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1">
+            <mxGeometry x="780" y="910" width="240" height="120" as="geometry" />
+          </mxCell>
+        </object>
+
+        <!-- Component: FlowDiagramGenerator -->
+        <object placeholders="1" c4Name="FlowDiagramGenerator" c4Type="Component" c4Technology="Python / Pillow" c4Description="Genera imagenes de diagramas de flujo/actividad basados en logica y condiciones del codigo." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%: %c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#E6E6E6&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="cmp-flowgen">
+          <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;labelBackgroundColor=none;fillColor=#23A2D9;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0E7DAD;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1">
+            <mxGeometry x="1090" y="910" width="240" height="120" as="geometry" />
+          </mxCell>
+        </object>
+
+        <!-- ==================== DATABASE ==================== -->
+
+        <object placeholders="1" c4Name="Base de Datos" c4Type="Container" c4Technology="PostgreSQL" c4Description="Almacena usuarios, roles, credenciales, diagramas e historial de versiones." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%: %c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#E6E6E6&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="cmp-db">
+          <mxCell parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;labelBackgroundColor=none;fillColor=#23A2D9;fontColor=#ffffff;strokeColor=#0E7DAD;fontSize=11;metaEdit=1;" vertex="1">
+            <mxGeometry x="700" y="1180" width="240" height="120" as="geometry" />
+          </mxCell>
+        </object>
+
+        <!-- ==================== EDGES: Actors -> Frontend ==================== -->
+
+        <!-- Analyst -> FileUploader -->
+        <mxCell id="cmp-e-analyst-upload" edge="1" parent="1" source="cmp-analyst" target="cmp-uploader" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cmp-l-analyst-upload" connectable="0" parent="cmp-e-analyst-upload" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Sube archivos .java/.zip [HTTPS]" vertex="1">
+          <mxGeometry relative="1" x="-0.2" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Admin -> AdminPanel -->
+        <mxCell id="cmp-e-admin-panel" edge="1" parent="1" source="cmp-admin" target="cmp-admin-panel" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cmp-l-admin-panel" connectable="0" parent="cmp-e-admin-panel" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Gestiona usuarios [HTTPS]" vertex="1">
+          <mxGeometry relative="1" x="-0.2" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ==================== EDGES: Frontend -> Backend ==================== -->
+
+        <!-- AuthModule -> AuthController -->
+        <mxCell id="cmp-e-auth" edge="1" parent="1" source="cmp-auth-fe" target="cmp-auth-be" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cmp-l-auth" connectable="0" parent="cmp-e-auth" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Login / Registro [REST/JSON]" vertex="1">
+          <mxGeometry relative="1" x="-0.1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- FileUploader -> ConversionController -->
+        <mxCell id="cmp-e-upload-conv" edge="1" parent="1" source="cmp-uploader" target="cmp-conversion-be" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cmp-l-upload-conv" connectable="0" parent="cmp-e-upload-conv" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Envia archivos para conversion [REST/JSON]" vertex="1">
+          <mxGeometry relative="1" x="-0.1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- DiagramViewer -> ConversionController -->
+        <mxCell id="cmp-e-viewer-conv" edge="1" parent="1" source="cmp-viewer" target="cmp-conversion-be" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cmp-l-viewer-conv" connectable="0" parent="cmp-e-viewer-conv" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Obtiene diagramas generados [REST/JSON]" vertex="1">
+          <mxGeometry relative="1" x="-0.1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- HistoryPanel -> HistoryService -->
+        <mxCell id="cmp-e-hist" edge="1" parent="1" source="cmp-history-fe" target="cmp-history-be" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cmp-l-hist" connectable="0" parent="cmp-e-hist" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Consulta historial de versiones [REST/JSON]" vertex="1">
+          <mxGeometry relative="1" x="-0.1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- AdminPanel -> UserController -->
+        <mxCell id="cmp-e-admin-user" edge="1" parent="1" source="cmp-admin-panel" target="cmp-user-be" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cmp-l-admin-user" connectable="0" parent="cmp-e-admin-user" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="CRUD usuarios [REST/JSON]" vertex="1">
+          <mxGeometry relative="1" x="-0.1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ==================== EDGES: Backend -> Analysis/Generation ==================== -->
+
+        <!-- ConversionController -> JavaParser -->
+        <mxCell id="cmp-e-conv-parser" edge="1" parent="1" source="cmp-conversion-be" target="cmp-parser" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cmp-l-conv-parser" connectable="0" parent="cmp-e-conv-parser" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Envia codigo Java&lt;br&gt;para analisis sintactico [ANTLR]" vertex="1">
+          <mxGeometry relative="1" x="-0.1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ConversionController -> ClassDiagramGenerator -->
+        <mxCell id="cmp-e-conv-class" edge="1" parent="1" source="cmp-conversion-be" target="cmp-classgen" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cmp-l-conv-class" connectable="0" parent="cmp-e-conv-class" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Genera diagrama de clases [Pillow]" vertex="1">
+          <mxGeometry relative="1" x="-0.1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ConversionController -> UseCaseDiagramGenerator -->
+        <mxCell id="cmp-e-conv-usecase" edge="1" parent="1" source="cmp-conversion-be" target="cmp-usecasegen" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cmp-l-conv-usecase" connectable="0" parent="cmp-e-conv-usecase" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Genera casos de uso [Pillow]" vertex="1">
+          <mxGeometry relative="1" x="-0.1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ConversionController -> FlowDiagramGenerator -->
+        <mxCell id="cmp-e-conv-flow" edge="1" parent="1" source="cmp-conversion-be" target="cmp-flowgen" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cmp-l-conv-flow" connectable="0" parent="cmp-e-conv-flow" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Genera diagrama de flujo [Pillow]" vertex="1">
+          <mxGeometry relative="1" x="-0.1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ==================== EDGES: Backend -> Database ==================== -->
+
+        <!-- AuthController -> DB -->
+        <mxCell id="cmp-e-auth-db" edge="1" parent="1" source="cmp-auth-be" target="cmp-db" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cmp-l-auth-db" connectable="0" parent="cmp-e-auth-db" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Verifica credenciales [SQL]" vertex="1">
+          <mxGeometry relative="1" x="-0.1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ConversionController -> DB -->
+        <mxCell id="cmp-e-conv-db" edge="1" parent="1" source="cmp-conversion-be" target="cmp-db" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cmp-l-conv-db" connectable="0" parent="cmp-e-conv-db" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Almacena diagramas [SQL]" vertex="1">
+          <mxGeometry relative="1" x="-0.1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- HistoryService -> DB -->
+        <mxCell id="cmp-e-hist-db" edge="1" parent="1" source="cmp-history-be" target="cmp-db" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cmp-l-hist-db" connectable="0" parent="cmp-e-hist-db" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Lee/escribe historial [SQL]" vertex="1">
+          <mxGeometry relative="1" x="-0.1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
