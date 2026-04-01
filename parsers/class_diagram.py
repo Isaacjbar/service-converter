@@ -28,6 +28,11 @@ class ClassDiagramGenerator(DiagramGenerator):
         return lines
 
     def _render_class(self, cls: ClassInfo) -> list[str]:
+        """
+        Genera las líneas PlantUML para una sola clase, interfaz o enum.
+        Aplica modificadores de visibilidad, marca miembros static/abstract
+        y separa campos de métodos con '--'.
+        """
         lines = []
 
         if cls.kind == "interface":
@@ -68,6 +73,11 @@ class ClassDiagramGenerator(DiagramGenerator):
         return "~"
 
     def _render_relationships(self, classes: list[ClassInfo]) -> list[str]:
+        """
+        Infiere y genera relaciones entre clases presentes en el conjunto analizado.
+        Detecta herencia (<|--), implementación (<|..) y asociación por campo (-->).
+        Solo genera relaciones hacia clases que existen en el mismo conjunto.
+        """
         lines = []
         class_names = {cls.name for cls in classes}
 

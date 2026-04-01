@@ -14,6 +14,21 @@ service = ConversionService()
 
 
 class ConvertView(APIView):
+    """
+    Recibe código Java (archivo .java, .zip o texto pegado), lo convierte
+    a diagramas UML y opcionalmente guarda el resultado en el historial.
+
+    POST /convert/
+    Permisos: usuario autenticado (el historial solo se guarda si está autenticado).
+    Parsers: multipart (archivos), form-data y JSON (código pegado).
+    Body (multipart): files=[.java|.zip], code=str (opcional)
+    Body (JSON):      { "code": str }
+    Returns: {
+        "diagrams": { "class": str, "usecase": str, "flow": str },
+        "history_id": int  (solo si el usuario está autenticado)
+    }
+    """
+
     parser_classes = [MultiPartParser, FormParser, JSONParser]
 
     def post(self, request):
@@ -57,6 +72,14 @@ class ConvertView(APIView):
         return Response(result)
 
     def _extract_zip(self, zip_file):
+        """
+        Extrae todos los archivos .java de un ZIP subido.
+
+        Params:
+            zip_file -- InMemoryUploadedFile del archivo .zip recibido.
+        Returns:
+            list[tuple[str, str]] -- lista de (filename, source_code).
+        """
         sources = []
         with tempfile.TemporaryDirectory() as tmp_dir:
             with zipfile.ZipFile(zip_file, 'r') as zf:
@@ -71,6 +94,16 @@ class ConvertView(APIView):
 
 
 class ExamplesView(APIView):
+    """
+    Retorna el resultado de convertir los archivos Java de ejemplo del proyecto.
+
+    GET /convert/examples/
+    Permisos: público.
+    Lee los archivos .java del directorio 'examples/' en la raíz del proyecto,
+    los convierte y retorna los diagramas sin guardar historial.
+    Returns: misma estructura que ConvertView.
+    """
+
     def get(self, request):
         example_dir = os.path.join(
             os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),

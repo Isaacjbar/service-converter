@@ -40,6 +40,16 @@ class JavaParser:
     """Parses Java source files and extracts class/method/field information."""
 
     def parse(self, source_code: str) -> list[ClassInfo]:
+        """
+        Parsea código fuente Java y retorna la lista de clases encontradas.
+
+        Params:
+            source_code -- cadena con el contenido completo del archivo .java.
+        Returns:
+            list[ClassInfo] con clases, interfaces y enums extraídos del AST.
+        Raises:
+            javalang.parser.JavaSyntaxError si el código no es Java válido.
+        """
         tree = javalang.parse.parse(source_code)
         classes = []
 
@@ -117,6 +127,11 @@ class JavaParser:
             ))
 
     def _resolve_type(self, type_node) -> str:
+        """
+        Convierte un nodo de tipo del AST de javalang a su representación en string.
+        Maneja tipos básicos (int, boolean), tipos de referencia (String, List<T>)
+        y tipos genéricos con argumentos anidados.
+        """
         if type_node is None:
             return "void"
         if isinstance(type_node, javalang.tree.BasicType):
@@ -143,6 +158,11 @@ class JavaParser:
         return statements
 
     def _classify_statement(self, stmt) -> list[str]:
+        """
+        Clasifica un statement del AST en tokens de control de flujo legibles
+        (IF:, FOR:, WHILE:, RETURN:, CALL:, etc.) para uso en FlowDiagramGenerator.
+        Procesa recursivamente bloques anidados.
+        """
         results = []
         if isinstance(stmt, javalang.tree.IfStatement):
             condition = self._expression_to_str(stmt.condition)

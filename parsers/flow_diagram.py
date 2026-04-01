@@ -26,6 +26,11 @@ class FlowDiagramGenerator(DiagramGenerator):
         return lines
 
     def _render_method(self, class_name: str, method: MethodInfo) -> list[str]:
+        """
+        Genera el bloque PlantUML 'partition' para un método individual.
+        Envuelve los statements del método en start/stop dentro de una partición
+        nombrada como 'ClassName.methodName(params)'.
+        """
         params = ", ".join(f"{p.type} {p.name}" for p in method.parameters)
         lines = [
             f"partition \"{class_name}.{method.name}({params})\" {{",
@@ -42,6 +47,11 @@ class FlowDiagramGenerator(DiagramGenerator):
         return lines
 
     def _render_statements(self, statements: list[str]) -> list[str]:
+        """
+        Convierte la lista de tokens de control de flujo (IF:, FOR:, WHILE:, etc.)
+        producida por JavaParser._classify_statement() en sintaxis PlantUML de actividad.
+        Procesa estructuras anidadas de forma iterativa con índice explícito.
+        """
         lines = []
         i = 0
         while i < len(statements):
@@ -123,6 +133,11 @@ class FlowDiagramGenerator(DiagramGenerator):
         return lines
 
     def _render_single(self, stmt: str) -> list[str]:
+        """
+        Traduce un token simple (CALL:, VAR:, RETURN:, THROW:) a una línea PlantUML.
+        Los tokens de bloque (IF:, FOR:, etc.) se delegan a _render_statements().
+        Los tokens de cierre (ENDIF, ENDFOR, etc.) retornan lista vacía.
+        """
         if stmt.startswith("IF:") or stmt.startswith("FOR:") or stmt.startswith("WHILE:") \
                 or stmt.startswith("TRY") or stmt.startswith("SWITCH:"):
             return self._render_statements([stmt])

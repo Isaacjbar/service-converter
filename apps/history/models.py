@@ -3,6 +3,24 @@ from django.conf import settings
 
 
 class DiagramHistory(models.Model):
+    """
+    Almacena el resultado de cada conversión de código Java a diagramas UML.
+
+    El campo 'version' se calcula automáticamente en save(): si el mismo usuario
+    ya convirtió un archivo con el mismo nombre, la versión se incrementa.
+    Esto permite rastrear la evolución del código sin sobrescribir historial previo.
+
+    Campos:
+        user         -- usuario propietario de la conversión.
+        filename     -- nombre del archivo Java original.
+        source_code  -- código fuente Java enviado.
+        class_diagram   -- PlantUML generado para diagrama de clases.
+        usecase_diagram -- PlantUML generado para diagrama de casos de uso.
+        flow_diagram    -- PlantUML generado para diagrama de flujo.
+        version      -- número de versión autoincremental por (user, filename).
+        created_at   -- fecha y hora de la conversión (solo lectura).
+    """
+
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
@@ -21,6 +39,12 @@ class DiagramHistory(models.Model):
         verbose_name_plural = 'Diagram histories'
 
     def save(self, *args, **kwargs):
+        """
+        Sobreescribe save() para asignar el número de versión antes de insertar.
+        Solo actúa en registros nuevos (sin pk). Consulta el máximo version
+        existente para el mismo (user, filename) e incrementa en 1.
+        Si no existe registro previo, asigna version=1.
+        """
         if not self.pk:
             last = DiagramHistory.objects.filter(
                 user=self.user,

@@ -3,6 +3,17 @@ from django.db import models
 
 
 class User(AbstractUser):
+    """
+    Modelo de usuario personalizado que extiende AbstractUser.
+
+    Usa email como campo de autenticación principal en lugar de username.
+    Agrega un campo 'role' para control de acceso basado en roles (RBAC).
+
+    Roles disponibles:
+        - 'admin': acceso total, incluyendo gestión de usuarios.
+        - 'analyst': acceso a conversión, historial y visualización.
+    """
+
     ROLE_CHOICES = [
         ('admin', 'Administrador'),
         ('analyst', 'Analista/Programador'),

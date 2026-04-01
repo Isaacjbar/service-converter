@@ -60,6 +60,12 @@ class UseCaseDiagramGenerator(DiagramGenerator):
         return lines
 
     def _classify(self, classes: list[ClassInfo]):
+        """
+        Separa las clases en sistemas (contienen lógica) y actores (entidades externas).
+        Clases con sufijo Service/Controller/Handler/Manager/Facade → sistema.
+        El resto → actores. Si no hay sistemas, usa la clase con más métodos públicos.
+        Returns: tuple (systems: list[ClassInfo], actors: list[ClassInfo])
+        """
         systems = []
         actors = []
         for cls in classes:
