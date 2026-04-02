@@ -20,10 +20,13 @@ INSTALLED_APPS = [
     'apps.accounts',
     'apps.converter',
     'apps.history',
+    'apps.audit',
 ]
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
+    'config.middleware.RequestLoggingMiddleware',
+    'config.middleware.AESEncryptionMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -91,3 +94,50 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 FILE_UPLOAD_MAX_MEMORY_SIZE = 16 * 1024 * 1024
+
+# AES-256 key (64 hex chars = 32 bytes). Set via environment variable in production.
+AES_SECRET_KEY = os.environ.get('AES_SECRET_KEY', 'a' * 64)
+
+# Logging
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '[{asctime}] {levelname} {name} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose',
+        },
+        'file_requests': {
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': str(BASE_DIR / 'logs' / 'requests.log'),
+            'maxBytes': 10 * 1024 * 1024,
+            'backupCount': 5,
+            'formatter': 'verbose',
+        },
+        'file_errors': {
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': str(BASE_DIR / 'logs' / 'errors.log'),
+            'maxBytes': 10 * 1024 * 1024,
+            'backupCount': 5,
+            'formatter': 'verbose',
+        },
+    },
+    'loggers': {
+        'converter.requests': {
+            'handlers': ['console', 'file_requests'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+        'converter.errors': {
+            'handlers': ['console', 'file_errors'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+    },
+}

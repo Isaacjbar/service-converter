@@ -1,8 +1,11 @@
 import os
 import zipfile
 import tempfile
+import logging
 
 from rest_framework import status
+
+error_logger = logging.getLogger('converter.errors')
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
@@ -54,7 +57,11 @@ class ConvertView(APIView):
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
-        result = service.convert(sources)
+        try:
+            result = service.convert(sources)
+        except Exception as exc:
+            error_logger.error(f"ConvertView.convert failed: {exc}", exc_info=True)
+            return Response({'error': 'Conversion failed'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
         # Save to history
         if request.user.is_authenticated:
@@ -81,15 +88,18 @@ class ConvertView(APIView):
             list[tuple[str, str]] -- lista de (filename, source_code).
         """
         sources = []
-        with tempfile.TemporaryDirectory() as tmp_dir:
-            with zipfile.ZipFile(zip_file, 'r') as zf:
-                zf.extractall(tmp_dir)
-                for root, _, files in os.walk(tmp_dir):
-                    for fname in files:
-                        if fname.endswith('.java'):
-                            fpath = os.path.join(root, fname)
-                            with open(fpath, encoding='utf-8', errors='replace') as f:
-                                sources.append((fname, f.read()))
+        try:
+            with tempfile.TemporaryDirectory() as tmp_dir:
+                with zipfile.ZipFile(zip_file, 'r') as zf:
+                    zf.extractall(tmp_dir)
+                    for root, _, files in os.walk(tmp_dir):
+                        for fname in files:
+                            if fname.endswith('.java'):
+                                fpath = os.path.join(root, fname)
+                                with open(fpath, encoding='utf-8', errors='replace') as f:
+                                    sources.append((fname, f.read()))
+        except Exception as exc:
+            error_logger.error(f"ZIP extraction failed: {exc}", exc_info=True)
         return sources
 
 

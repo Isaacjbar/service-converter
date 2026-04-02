@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from utils.crypto import sha256
 
 
 class DiagramHistory(models.Model):
@@ -32,6 +33,7 @@ class DiagramHistory(models.Model):
     usecase_diagram = models.TextField(blank=True)
     flow_diagram = models.TextField(blank=True)
     version = models.PositiveIntegerField(default=1)
+    source_hash = models.CharField(max_length=64, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -51,6 +53,7 @@ class DiagramHistory(models.Model):
                 filename=self.filename,
             ).order_by('-version').first()
             self.version = (last.version + 1) if last else 1
+        self.source_hash = sha256(self.source_code)
         super().save(*args, **kwargs)
 
     def __str__(self):
