@@ -4,6 +4,14 @@ from django.http import JsonResponse
 from utils.crypto import encrypt_aes256, decrypt_aes256
 from utils.request_context import set_current_ip
 
+SECURITY_HEADERS = {
+    'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload',
+    'X-Content-Type-Options': 'nosniff',
+    'X-Frame-Options': 'DENY',
+    'Referrer-Policy': 'strict-origin-when-cross-origin',
+    'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
+}
+
 request_logger = logging.getLogger('converter.requests')
 error_logger = logging.getLogger('converter.errors')
 
@@ -32,6 +40,17 @@ class RequestLoggingMiddleware:
 
         response = self.get_response(request)
         request_logger.info(f"{request.method} {request.path} → {response.status_code}")
+        return response
+
+
+class SecurityHeadersMiddleware:
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        response = self.get_response(request)
+        for header, value in SECURITY_HEADERS.items():
+            response[header] = value
         return response
 
 

@@ -5,7 +5,7 @@ from datetime import timedelta
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-dev-key-change-in-production'
-DEBUG = True
+DEBUG = os.environ.get('DJANGO_DEBUG', 'False') == 'True'
 ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
@@ -27,6 +27,7 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'config.middleware.RequestLoggingMiddleware',
     'config.middleware.AESEncryptionMiddleware',
+    'config.middleware.SecurityHeadersMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -80,6 +81,8 @@ SIMPLE_JWT = {
 }
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
