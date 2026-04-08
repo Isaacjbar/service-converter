@@ -5,3 +5,4 @@ django-cors-headers>=4.4
 javalang>=0.13.0
 Pillow>=10.4
 cryptography>=42.0
+mysqlclient>=2.2.1

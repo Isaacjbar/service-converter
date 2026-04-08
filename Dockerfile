@@ -5,6 +5,11 @@ RUN groupadd -r appuser && useradd -r -g appuser appuser
 
 WORKDIR /app
 
+# Install system deps for mysqlclient
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    default-libmysqlclient-dev gcc pkg-config \
+    && rm -rf /var/lib/apt/lists/*
+
 # Install dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt && \
