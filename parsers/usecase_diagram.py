@@ -23,40 +23,49 @@ class UseCaseDiagramGenerator(DiagramGenerator):
 
     def _body(self, classes: list[ClassInfo]) -> list[str]:
         systems, actors = self._classify(classes)
-        lines: list[str] = []
-
-        actor_names = set()
-        for cls in actors:
-            lines.append(f'actor "{cls.name}" as {cls.name}')
-            actor_names.add(cls.name)
-
+        actor_names = {cls.name for cls in actors}
+        lines = self._render_actors(actors)
         lines.append("")
-
         for sys_cls in systems:
-            lines.append(f'rectangle "{sys_cls.name}" {{')
-            for method in sys_cls.methods:
-                if "public" in method.modifiers or not method.modifiers:
-                    uc_id = f"{sys_cls.name}_{method.name}"
-                    label = self._humanize(method.name)
-                    lines.append(f'  usecase "{label}" as {uc_id}')
-            lines.append("}")
+            lines.extend(self._render_system_block(sys_cls))
             lines.append("")
+        lines.extend(self._render_links(systems, actor_names))
+        return lines
 
+    def _render_actors(self, actors: list) -> list[str]:
+        return [f'actor "{cls.name}" as {cls.name}' for cls in actors]
+
+    def _render_system_block(self, sys_cls) -> list[str]:
+        lines = [f'rectangle "{sys_cls.name}" {{']
+        for method in sys_cls.methods:
+            if "public" in method.modifiers or not method.modifiers:
+                uc_id = f"{sys_cls.name}_{method.name}"
+                label = self._humanize(method.name)
+                lines.append(f'  usecase "{label}" as {uc_id}')
+        lines.append("}")
+        return lines
+
+    def _render_links(self, systems: list, actor_names: set) -> list[str]:
+        lines = []
         for sys_cls in systems:
             for method in sys_cls.methods:
                 if "public" not in method.modifiers and method.modifiers:
                     continue
-                uc_id = f"{sys_cls.name}_{method.name}"
-                linked = False
-                for param in method.parameters:
-                    base_type = param.type.split("<")[0]
-                    if base_type in actor_names:
-                        lines.append(f"{base_type} --> {uc_id}")
-                        linked = True
-                if not linked and actor_names:
-                    first_actor = next(iter(actor_names))
-                    lines.append(f"{first_actor} --> {uc_id}")
+                lines.extend(self._render_method_links(sys_cls.name, method, actor_names))
+        return lines
 
+    def _render_method_links(self, sys_name: str, method, actor_names: set) -> list[str]:
+        uc_id = f"{sys_name}_{method.name}"
+        lines = []
+        linked = False
+        for param in method.parameters:
+            base_type = param.type.split("<")[0]
+            if base_type in actor_names:
+                lines.append(f"{base_type} --> {uc_id}")
+                linked = True
+        if not linked and actor_names:
+            first_actor = next(iter(actor_names))
+            lines.append(f"{first_actor} --> {uc_id}")
         return lines
 
     def _classify(self, classes: list[ClassInfo]):

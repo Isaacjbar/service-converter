@@ -15,7 +15,7 @@ def _write_log(user, action, resource, resource_id, description):
             user=user,
             action=action,
             resource=resource,
-            resource_id=str(resource_id) if resource_id else None,
+            resource_id=str(resource_id) if resource_id else '',
             description=description,
             ip_address=get_current_ip(),
         )
@@ -41,9 +41,9 @@ def on_diagram_history_delete(sender, instance, **kwargs):
 
 
 def connect_user_signals():
-    User = get_user_model()
+    user_model = get_user_model()
 
-    @receiver(post_save, sender=User)
+    @receiver(post_save, sender=user_model)
     def on_user_save(sender, instance, created, **kwargs):
         action = 'CREATE' if created else 'UPDATE'
         _write_log(
@@ -51,7 +51,7 @@ def connect_user_signals():
             f"username={instance.username} email={instance.email}"
         )
 
-    @receiver(post_delete, sender=User)
+    @receiver(post_delete, sender=user_model)
     def on_user_delete(sender, instance, **kwargs):
         _write_log(
             None, 'DELETE', 'User', instance.id,

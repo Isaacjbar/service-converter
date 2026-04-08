@@ -1,5 +1,8 @@
 FROM python:3.12-slim
 
+# Create non-root user for security
+RUN groupadd -r appuser && useradd -r -g appuser appuser
+
 WORKDIR /app
 
 # Install dependencies
@@ -7,18 +10,18 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt && \
     pip install --no-cache-dir gunicorn
 
-# Copy project
+# Copy project files
 COPY . .
 
-# Create media and static directories
-RUN mkdir -p media static
+# Create directories and set ownership
+RUN mkdir -p media static logs && \
+    chown -R appuser:appuser /app
 
-# Copy entrypoint script
+# Copy and prepare entrypoint
 COPY entrypoint.sh .
 RUN chmod +x entrypoint.sh
 
-# Expose port
 EXPOSE 8000
 
-# Run entrypoint
+USER appuser
 ENTRYPOINT ["./entrypoint.sh"]

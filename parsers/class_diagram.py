@@ -33,37 +33,42 @@ class ClassDiagramGenerator(DiagramGenerator):
         Aplica modificadores de visibilidad, marca miembros static/abstract
         y separa campos de métodos con '--'.
         """
-        lines = []
+        lines = [self._class_header(cls)]
+        if cls.kind == "enum":
+            lines.extend(self._render_enum_constants(cls))
+        lines.extend(self._render_class_members(cls))
+        lines.append("}")
+        return lines
 
+    def _class_header(self, cls: ClassInfo) -> str:
         if cls.kind == "interface":
-            lines.append(f"interface {cls.name} {{")
-        elif cls.kind == "enum":
-            lines.append(f"enum {cls.name} {{")
-            for const in cls.enum_constants:
-                lines.append(f"  {const}")
-            if cls.enum_constants and (cls.fields or cls.methods):
-                lines.append("  --")
-        elif "abstract" in cls.modifiers:
-            lines.append(f"abstract class {cls.name} {{")
-        else:
-            lines.append(f"class {cls.name} {{")
+            return f"interface {cls.name} {{"
+        if cls.kind == "enum":
+            return f"enum {cls.name} {{"
+        if "abstract" in cls.modifiers:
+            return f"abstract class {cls.name} {{"
+        return f"class {cls.name} {{"
 
+    def _render_enum_constants(self, cls: ClassInfo) -> list[str]:
+        lines = [f"  {const}" for const in cls.enum_constants]
+        if cls.enum_constants and (cls.fields or cls.methods):
+            lines.append("  --")
+        return lines
+
+    def _render_class_members(self, cls: ClassInfo) -> list[str]:
+        lines = []
         for field in cls.fields:
             vis = self._get_visibility(field.modifiers)
             static = " {static}" if "static" in field.modifiers else ""
             lines.append(f"  {vis}{field.name} : {field.type}{static}")
-
         if cls.fields and cls.methods:
             lines.append("  --")
-
         for method in cls.methods:
             vis = self._get_visibility(method.modifiers)
             static = " {static}" if "static" in method.modifiers else ""
             abstract = " {abstract}" if "abstract" in method.modifiers else ""
             params = ", ".join(f"{p.name}: {p.type}" for p in method.parameters)
             lines.append(f"  {vis}{method.name}({params}) : {method.return_type}{static}{abstract}")
-
-        lines.append("}")
         return lines
 
     def _get_visibility(self, modifiers: list[str]) -> str:

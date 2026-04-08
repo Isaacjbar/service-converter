@@ -22,7 +22,7 @@ class AuditLog(models.Model):
     )
     action = models.CharField(max_length=10, choices=ACTION_CHOICES)
     resource = models.CharField(max_length=100)
-    resource_id = models.CharField(max_length=50, null=True, blank=True)
+    resource_id = models.CharField(max_length=50, blank=True, default='')
     description = models.TextField(blank=True)
     ip_address = models.GenericIPAddressField(null=True, blank=True)
     checksum = models.CharField(max_length=64, blank=True)

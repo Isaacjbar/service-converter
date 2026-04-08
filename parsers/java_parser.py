@@ -163,73 +163,87 @@ class JavaParser:
         (IF:, FOR:, WHILE:, RETURN:, CALL:, etc.) para uso en FlowDiagramGenerator.
         Procesa recursivamente bloques anidados.
         """
-        results = []
         if isinstance(stmt, javalang.tree.IfStatement):
-            condition = self._expression_to_str(stmt.condition)
-            results.append(f"IF:{condition}")
-            if stmt.then_statement:
-                if isinstance(stmt.then_statement, javalang.tree.BlockStatement):
-                    for s in stmt.then_statement.statements:
-                        results.extend(self._classify_statement(s))
-                else:
-                    results.extend(self._classify_statement(stmt.then_statement))
-            results.append("ENDIF")
-            if stmt.else_statement:
-                results.append("ELSE")
-                if isinstance(stmt.else_statement, javalang.tree.BlockStatement):
-                    for s in stmt.else_statement.statements:
-                        results.extend(self._classify_statement(s))
-                else:
-                    results.extend(self._classify_statement(stmt.else_statement))
-                results.append("ENDELSE")
-        elif isinstance(stmt, javalang.tree.ForStatement):
-            results.append("FOR:loop")
-            if isinstance(stmt.body, javalang.tree.BlockStatement):
-                for s in stmt.body.statements:
-                    results.extend(self._classify_statement(s))
-            results.append("ENDFOR")
-        elif isinstance(stmt, javalang.tree.WhileStatement):
-            condition = self._expression_to_str(stmt.condition)
-            results.append(f"WHILE:{condition}")
-            if isinstance(stmt.body, javalang.tree.BlockStatement):
-                for s in stmt.body.statements:
-                    results.extend(self._classify_statement(s))
-            results.append("ENDWHILE")
-        elif isinstance(stmt, javalang.tree.ReturnStatement):
+            return self._classify_if(stmt)
+        if isinstance(stmt, javalang.tree.ForStatement):
+            return self._classify_for(stmt)
+        if isinstance(stmt, javalang.tree.WhileStatement):
+            return self._classify_while(stmt)
+        if isinstance(stmt, javalang.tree.ReturnStatement):
             val = self._expression_to_str(stmt.expression) if stmt.expression else ""
-            results.append(f"RETURN:{val}")
-        elif isinstance(stmt, javalang.tree.TryStatement):
-            results.append("TRY")
-            if stmt.block:
-                for s in stmt.block:
-                    results.extend(self._classify_statement(s))
-            results.append("ENDTRY")
-            if stmt.catches:
-                for catch in stmt.catches:
-                    results.append(f"CATCH:{catch.parameter.name if catch.parameter else 'e'}")
-                    if catch.block:
-                        for s in catch.block:
-                            results.extend(self._classify_statement(s))
-                    results.append("ENDCATCH")
-        elif isinstance(stmt, javalang.tree.SwitchStatement):
-            expr = self._expression_to_str(stmt.expression)
-            results.append(f"SWITCH:{expr}")
-            for case in (stmt.cases or []):
-                label = ", ".join(
-                    self._expression_to_str(c) for c in case.case
-                ) if case.case else "default"
-                results.append(f"CASE:{label}")
-                for s in (case.statements or []):
-                    results.extend(self._classify_statement(s))
-            results.append("ENDSWITCH")
-        elif isinstance(stmt, javalang.tree.StatementExpression):
-            results.append(f"CALL:{self._expression_to_str(stmt.expression)}")
-        elif isinstance(stmt, javalang.tree.LocalVariableDeclaration):
+            return [f"RETURN:{val}"]
+        if isinstance(stmt, javalang.tree.TryStatement):
+            return self._classify_try(stmt)
+        if isinstance(stmt, javalang.tree.SwitchStatement):
+            return self._classify_switch(stmt)
+        if isinstance(stmt, javalang.tree.StatementExpression):
+            return [f"CALL:{self._expression_to_str(stmt.expression)}"]
+        if isinstance(stmt, javalang.tree.LocalVariableDeclaration):
             type_name = self._resolve_type(stmt.type)
-            for decl in stmt.declarators:
-                results.append(f"VAR:{type_name} {decl.name}")
-        elif isinstance(stmt, javalang.tree.ThrowStatement):
-            results.append(f"THROW:{self._expression_to_str(stmt.expression)}")
+            return [f"VAR:{type_name} {decl.name}" for decl in stmt.declarators]
+        if isinstance(stmt, javalang.tree.ThrowStatement):
+            return [f"THROW:{self._expression_to_str(stmt.expression)}"]
+        return []
+
+    def _extract_block(self, block) -> list[str]:
+        if isinstance(block, javalang.tree.BlockStatement):
+            results = []
+            for s in block.statements:
+                results.extend(self._classify_statement(s))
+            return results
+        return self._classify_statement(block)
+
+    def _classify_if(self, stmt) -> list[str]:
+        condition = self._expression_to_str(stmt.condition)
+        results = [f"IF:{condition}"]
+        if stmt.then_statement:
+            results.extend(self._extract_block(stmt.then_statement))
+        results.append("ENDIF")
+        if stmt.else_statement:
+            results.append("ELSE")
+            results.extend(self._extract_block(stmt.else_statement))
+            results.append("ENDELSE")
+        return results
+
+    def _classify_for(self, stmt) -> list[str]:
+        results = ["FOR:loop"]
+        if isinstance(stmt.body, javalang.tree.BlockStatement):
+            for s in stmt.body.statements:
+                results.extend(self._classify_statement(s))
+        results.append("ENDFOR")
+        return results
+
+    def _classify_while(self, stmt) -> list[str]:
+        condition = self._expression_to_str(stmt.condition)
+        results = [f"WHILE:{condition}"]
+        if isinstance(stmt.body, javalang.tree.BlockStatement):
+            for s in stmt.body.statements:
+                results.extend(self._classify_statement(s))
+        results.append("ENDWHILE")
+        return results
+
+    def _classify_try(self, stmt) -> list[str]:
+        results = ["TRY"]
+        for s in (stmt.block or []):
+            results.extend(self._classify_statement(s))
+        results.append("ENDTRY")
+        for catch in (stmt.catches or []):
+            name = catch.parameter.name if catch.parameter else 'e'
+            results.append(f"CATCH:{name}")
+            for s in (catch.block or []):
+                results.extend(self._classify_statement(s))
+            results.append("ENDCATCH")
+        return results
+
+    def _classify_switch(self, stmt) -> list[str]:
+        expr = self._expression_to_str(stmt.expression)
+        results = [f"SWITCH:{expr}"]
+        for case in (stmt.cases or []):
+            label = ", ".join(self._expression_to_str(c) for c in case.case) if case.case else "default"
+            results.append(f"CASE:{label}")
+            for s in (case.statements or []):
+                results.extend(self._classify_statement(s))
+        results.append("ENDSWITCH")
         return results
 
     def _expression_to_str(self, expr) -> str:

@@ -15,8 +15,6 @@ class AuditedTokenObtainPairView(TokenObtainPairView):
     def post(self, request, *args, **kwargs):
         response = super().post(request, *args, **kwargs)
         if response.status_code == 200:
-            from django.contrib.auth import get_user_model
-            User = get_user_model()
             email = request.data.get('email', '')
             try:
                 user = User.objects.get(email=email)

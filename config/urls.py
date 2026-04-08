@@ -3,11 +3,11 @@ from django.urls import path, include
 from django.http import JsonResponse
 
 
-def handler404(request, exception=None):
+def handler404(_request, _exception=None):
     return JsonResponse({'detail': 'Not found.'}, status=404)
 
 
-def handler500(request):
+def handler500(_request):
     return JsonResponse({'detail': 'Internal server error.'}, status=500)
 
 

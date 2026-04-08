@@ -13,6 +13,7 @@ from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
 from services.conversion_service import ConversionService
 from apps.history.models import DiagramHistory
 
+JAVA_EXTENSION = '.java'
 service = ConversionService()
 
 
@@ -40,7 +41,7 @@ class ConvertView(APIView):
         # Handle file uploads
         files = request.FILES.getlist('files')
         for f in files:
-            if f.name.endswith('.java'):
+            if f.name.endswith(JAVA_EXTENSION):
                 content = f.read().decode('utf-8', errors='replace')
                 sources.append((f.name, content))
             elif f.name.endswith('.zip'):
@@ -94,7 +95,7 @@ class ConvertView(APIView):
                     zf.extractall(tmp_dir)
                     for root, _, files in os.walk(tmp_dir):
                         for fname in files:
-                            if fname.endswith('.java'):
+                            if fname.endswith(JAVA_EXTENSION):
                                 fpath = os.path.join(root, fname)
                                 with open(fpath, encoding='utf-8', errors='replace') as f:
                                     sources.append((fname, f.read()))
@@ -124,7 +125,7 @@ class ExamplesView(APIView):
 
         sources = []
         for fname in sorted(os.listdir(example_dir)):
-            if fname.endswith('.java'):
+            if fname.endswith(JAVA_EXTENSION):
                 fpath = os.path.join(example_dir, fname)
                 with open(fpath, encoding='utf-8') as f:
                     sources.append((fname, f.read()))
