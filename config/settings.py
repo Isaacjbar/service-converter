@@ -88,6 +88,7 @@ SIMPLE_JWT = {
 }
 
 CORS_ALLOW_ALL_ORIGINS = True
+CORS_EXPOSE_HEADERS = ['X-Encrypted']
 CORS_ALLOW_HEADERS = [
     'accept',
     'accept-encoding',
