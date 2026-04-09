@@ -1,0 +1,8 @@
+[2026-04-08 22:21:11,980] INFO converter.requests GET / user=anon ip=127.0.0.1
+[2026-04-08 22:21:16,746] INFO converter.requests GET /api/ user=anon ip=127.0.0.1
+[2026-04-08 22:21:30,465] INFO converter.requests GET / user=anon ip=127.0.0.1
+[2026-04-08 22:22:00,135] INFO converter.requests POST /convert/ user=anon ip=127.0.0.1
+[2026-04-08 22:22:03,610] INFO converter.requests POST /auth/register/ user=anon ip=127.0.0.1
+[2026-04-08 22:22:05,351] INFO converter.requests GET /examples/ user=anon ip=127.0.0.1
+[2026-04-08 22:26:16,459] INFO converter.requests POST /auth/login/ user=anon ip=127.0.0.1
+[2026-04-08 22:26:26,877] INFO converter.requests POST /auth/login/ user=anon ip=127.0.0.1
