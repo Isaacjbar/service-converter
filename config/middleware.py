@@ -76,7 +76,9 @@ class AESEncryptionMiddleware:
         try:
             content = response.content.decode('utf-8')
             encrypted = encrypt_aes256(content)
-            response.content = json.dumps({'data': encrypted}).encode('utf-8')
+            new_body = json.dumps({'data': encrypted}).encode('utf-8')
+            response.content = new_body
+            response['Content-Length'] = str(len(new_body))
             response['Content-Type'] = 'application/json'
             response['X-Encrypted'] = 'true'
         except Exception as exc:
