@@ -31,12 +31,22 @@ class AuditedTokenObtainPairView(TokenObtainPairView):
         return response
 
 
+class IsAdmin(permissions.BasePermission):
+    """
+    Permiso personalizado que restringe el acceso a usuarios con role == 'admin'.
+    Retorna True solo si el usuario está autenticado y su rol es 'admin'.
+    """
+
+    def has_permission(self, request, view):
+        return request.user.is_authenticated and request.user.role == 'admin'
+
+
 class RegisterView(generics.CreateAPIView):
     """
     Registra un nuevo usuario en el sistema.
 
     POST /accounts/register/
-    Permisos: público (AllowAny).
+    Permisos: solo administradores (IsAdmin).
     Body: { "email": str, "username": str, "password": str }
     Returns: datos del usuario creado con tokens JWT.
     """
@@ -58,16 +68,6 @@ class MeView(APIView):
     def get(self, request):
         serializer = UserSerializer(request.user)
         return Response(serializer.data)
-
-
-class IsAdmin(permissions.BasePermission):
-    """
-    Permiso personalizado que restringe el acceso a usuarios con role == 'admin'.
-    Retorna True solo si el usuario está autenticado y su rol es 'admin'.
-    """
-
-    def has_permission(self, request, view):
-        return request.user.is_authenticated and request.user.role == 'admin'
 
 
 class AdminUserListView(generics.ListAPIView):
